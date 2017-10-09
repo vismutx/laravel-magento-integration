@@ -76,7 +76,9 @@ class MagentoObject {
         // Return key
         if (isset($this->data[$key])) {
             return $this->data[$key];
-        };
+        } else {
+            return '';
+        }
 
         throw new MagentoObjectException("Key [$key] not found for this item");
      }
@@ -111,11 +113,25 @@ class MagentoObject {
                 $functions[] = $this->camelize($key);
             }
             echo '<pre>';
-            print_r($functions);
+            var_export($functions);
             echo '</pre>';
             return;
         }
      }
+
+    public function getPhpDoc()
+    {
+        $functions = array();
+        if ( is_array($this->getData()) ) {
+            echo '/**'. "<br>";
+            foreach ( $this->getData() as $key => $value ) {
+                $function = $this->camelize($key);
+                echo '* @method string ' . $function . '()' . "<br>";
+            }
+            echo '*/';
+            return;
+        }
+    }
 
      /**
       * Camelize
