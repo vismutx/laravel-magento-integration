@@ -66,7 +66,7 @@ class Magento {
 	 */
 	public function __construct(Repository $config)
 	{
-		$this->connections = $config->get('magento::connections');
+		$this->connections = $config->get('tinyrocket.magento.connections');
 		if ( is_array($this->connections) ) {
 			$this->batchRegister($this->connections);
 		}
