@@ -104,7 +104,7 @@ class MagentoSoapClient extends \SoapClient {
 			} elseif ($method == 'call') {
 				$this->results = $this->__soapCall($method, $args);
 			} else {
-				$this->results = $this->__soapCall($method, array($this->session, $args));
+                		$this->results = $this->__soapCall($method, array_merge((array)$this->session, (array)$args));
 			}
 
 			return $this->getResultsCollections();
