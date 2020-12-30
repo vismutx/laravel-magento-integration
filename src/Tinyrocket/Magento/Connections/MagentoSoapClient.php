@@ -94,17 +94,17 @@ class MagentoSoapClient extends \SoapClient {
 	 */
 	 public function __call($method, $args) 
 	 {
-	 	if ( is_array($args) && count($args) == 1 ) {
-	 		$args = current($args);
-	 	}
+	 	//if ( is_array($args) && count($args) == 1 ) {
+	 	//	$args = current($args);
+	 	//}
 
 	 	try {
 	 		if ( $method == 'login' ) {
 			    $this->results = $this->__soapCall($method, $args);
 			} elseif ($method == 'call') {
-				$this->results = $this->__soapCall($method, $args);
+		            $this->results = $this->__soapCall($method, $args);
 			} else {
-                		$this->results = $this->__soapCall($method, array_merge((array)$this->session, (array)$args));
+                            $this->results = $this->__soapCall($method, array_merge((array)$this->session, (array)$args));
 			}
 
 			return $this->getResultsCollections();
